@@ -1007,6 +1007,9 @@ MonoBehaviour:
   backgroundBox: {fileID: 1180683959}
   currentMessages: []
   currentActors: []
+  openBoxAnimationDuration: 0.3
+  closeBoxAnimationDuration: 0.3
+  textTypingAnimationSpeed: 0.05
   printDebug: 0
 --- !u!1 &1880734507
 GameObject:

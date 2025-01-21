@@ -4,8 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
+using DG.Tweening;
 
 namespace Dialogue
 {
@@ -25,12 +24,18 @@ namespace Dialogue
         [SerializeField] private Message[] currentMessages;
         [SerializeField] private Actor[] currentActors;
 
+        [Header("Animation")]
+        [SerializeField, Range(0, 1)] private float openBoxAnimationDuration = .5f;
+        [SerializeField, Range(0, 1)] private float closeBoxAnimationDuration = .5f;
+        [SerializeField, Range(0, .3f)] private float textTypingAnimationSpeed = .05f;
+
         [Header("Debug")]
         [SerializeField] private bool printDebug = false;
 
         private int _activeMessage = 0;
 
         private bool _isActive = false;
+        private bool _isTyping = false;
 
         public bool isActive
         {
@@ -42,7 +47,14 @@ namespace Dialogue
             {
                 _isActive = value;
 
-                UpdateVisibility();
+                if (_isActive)
+                {
+                    OpenDialogueAnimation();
+                }
+                else
+                {
+                    CloseDialogueAnimation();
+                }
             }
         }
 
@@ -90,7 +102,7 @@ namespace Dialogue
 
             DisplayMessage();
 
-            if(printDebug)
+            if (printDebug)
                 Debug.Log($"Started conversation! Loaded messages: {messages.Length}");
         }
 
@@ -103,7 +115,17 @@ namespace Dialogue
                 return;
 
             Message messageToDisplay = currentMessages[_activeMessage];
-            messageText.text = messageToDisplay.text;
+
+            if (!_isTyping)
+            { 
+                StartCoroutine(TypeLineAnimation());
+            }
+            else
+            {
+                _isTyping = false;
+
+                messageText.text = messageToDisplay.text;
+            }
 
             Actor actorToDisplay = currentActors[messageToDisplay.actorID];
             actorNameText.text = actorToDisplay.name;
@@ -115,18 +137,28 @@ namespace Dialogue
         /// </summary>
         public void NextMessage()
         {
-            _activeMessage++;
+            if (!_isActive)
+                return;
 
-            if (_activeMessage < currentMessages.Length)
+            if (_isTyping)
             {
                 DisplayMessage();
             }
             else
             {
-                isActive = false;
+                _activeMessage++;
 
-                if (printDebug)
-                    Debug.Log("Conversation ended!");
+                if (_activeMessage < currentMessages.Length)
+                {
+                    DisplayMessage();
+                }
+                else
+                {
+                    isActive = false;
+
+                    if (printDebug)
+                        Debug.Log("Conversation ended!");
+                }
             }
         }
 
@@ -137,6 +169,52 @@ namespace Dialogue
         private void UpdateVisibility()
         {
             backgroundBox.gameObject.SetActive(isActive);
+        }
+        #endregion
+
+        #region Animation
+        private void OpenDialogueAnimation()
+        {
+            UpdateVisibility();
+
+            backgroundBox.transform.localScale = Vector3.zero;
+
+            backgroundBox.DOScale(Vector3.one, openBoxAnimationDuration);
+
+            if (printDebug)
+                Debug.Log("Opening dialogue animation");
+        }
+
+        private void CloseDialogueAnimation()
+        {
+            backgroundBox.DOScale(Vector3.zero, closeBoxAnimationDuration).SetEase(Ease.InOutExpo).OnComplete(() =>
+            {
+                UpdateVisibility();
+
+                backgroundBox.transform.localScale = Vector3.zero;
+            });
+
+            if (printDebug)
+                Debug.Log("Closing dialogue animation");
+        }
+
+        private IEnumerator TypeLineAnimation()
+        {
+            messageText.text = "";
+
+            _isTyping = true;
+
+            foreach (char c in currentMessages[_activeMessage].text.ToCharArray())
+            {
+                if (!_isTyping)
+                    yield break;
+
+                messageText.text += c;
+
+                yield return new WaitForSeconds(textTypingAnimationSpeed);
+            }
+
+            _isTyping = false;
         }
         #endregion
     }
