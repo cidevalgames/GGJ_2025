@@ -8,6 +8,7 @@ namespace Player
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private float speed = 6f;
+        [SerializeField] private float jumpForce = 3f;
         [SerializeField] private float sprintSpeedMultiplier = 1.5f;
         [SerializeField] private float turnSmoothTime = .1f;
 
@@ -17,6 +18,12 @@ namespace Player
         private float _turnSmoothVelocity;
 
         private bool _isSprinting = false;
+        private bool _isJumping = false;
+        private bool _isGrounded = true;
+
+        private float _vSpeed = 0f;
+
+        private Vector3 _velocity;
 
         private CharacterController m_characterController;
         private Transform m_camera;
@@ -37,13 +44,30 @@ namespace Player
             {
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + m_camera.eulerAngles.y;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity, turnSmoothTime);
+
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
                 float currentSpeed = _isSprinting ? speed * sprintSpeedMultiplier : speed;
 
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                m_characterController.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
+                moveDir.y = _vSpeed;
+
+                _velocity = moveDir.normalized * currentSpeed * Time.deltaTime;
             }
+
+            if (m_characterController.isGrounded)
+            {
+                _vSpeed = 0f;
+                m_animator.SetBool("isGrounded", true);
+            }
+            else
+            {
+                _vSpeed = Physics.gravity.y * Time.deltaTime;
+            }
+
+            _velocity.y = _vSpeed;
+
+            m_characterController.Move(_velocity);
         }
 
         #region Input
@@ -62,6 +86,22 @@ namespace Player
             _isSprinting = !_isSprinting;
 
             m_animator.SetBool("isSprinting", _isSprinting);
+        }
+
+        public void OnJump(InputValue value)
+        {
+            Debug.Log($"Jump value: {value.Get<float>()}");
+
+            if (value.Get<float>() <= 0)
+                return;
+            if (!m_characterController.isGrounded)
+                return;
+
+            _vSpeed += jumpForce;
+
+            _isJumping = true;
+
+            //m_animator.SetBool("isJumping", _isJumping);
         }
         #endregion
     }
