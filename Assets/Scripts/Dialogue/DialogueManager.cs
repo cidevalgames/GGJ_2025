@@ -50,10 +50,14 @@ namespace Dialogue
                 if (_isActive)
                 {
                     OpenDialogueAnimation();
+
+                    Cursor.lockState = CursorLockMode.None;
                 }
                 else
                 {
                     CloseDialogueAnimation();
+                    
+                    Cursor.lockState = CursorLockMode.Locked;
                 }
             }
         }
