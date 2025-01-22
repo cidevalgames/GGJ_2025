@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6830234c46ba43640af6562b7f4b17ab, type: 3}
   m_Name: Actor_0
   m_EditorClassIdentifier: 
-  actorName: First actor
-  sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  actorName: Bobert
+  sprite: {fileID: 21300000, guid: 05932528e21161e45982c28075a00ddb, type: 3}

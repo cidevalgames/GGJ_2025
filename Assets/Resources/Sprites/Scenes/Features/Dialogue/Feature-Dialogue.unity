@@ -500,8 +500,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 153.95001, y: -33.01021}
-  m_SizeDelta: {x: -307.90002, y: 214.3796}
+  m_AnchoredPosition: {x: 156.59692, y: -46.74256}
+  m_SizeDelta: {x: -348.6961, y: 169.4691}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &328042350
 MonoBehaviour:
@@ -525,17 +525,18 @@ MonoBehaviour:
       m_Calls: []
   m_text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
     Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed,
-    dolor. Cras elementum ultrices diam.
+    dolor.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3da9aba8e2567fe478d913c38c8c6343, type: 2}
+  m_sharedMaterial: {fileID: 7979798759126956936, guid: 3da9aba8e2567fe478d913c38c8c6343,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -552,8 +553,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44
-  m_fontSizeBase: 44
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -667,14 +668,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.5676286, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 05932528e21161e45982c28075a00ddb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -764,8 +765,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 153.95001, y: 107.19}
-  m_SizeDelta: {x: -307.90002, y: 66.01999}
+  m_AnchoredPosition: {x: 156.6, y: 71}
+  m_SizeDelta: {x: -348.7, y: 66.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &995031667
 MonoBehaviour:
@@ -789,15 +790,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: <style=h1>Name</style>
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a5d05213c8d94fa42a38edd28080599d, type: 2}
+  m_sharedMaterial: {fileID: -7264649804066501707, guid: a5d05213c8d94fa42a38edd28080599d,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -922,7 +924,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7a02ebb46a4193941a0868acf3d19f08, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1044,6 +1046,11 @@ MonoBehaviour:
   messages:
   - {fileID: 11400000, guid: fb5de31404232424c84c78be5a3faf82, type: 2}
   - {fileID: 11400000, guid: d119f47ab9bb7324fa6093aa6305ab28, type: 2}
+  - {fileID: 11400000, guid: 09a9c5f718d9a0c4db1fd48025c53999, type: 2}
+  - {fileID: 11400000, guid: 7b348481696b93c40977cd4fda8534ec, type: 2}
+  - {fileID: 11400000, guid: 1b03f098e5aa33245bb14fce12a7594d, type: 2}
+  - {fileID: 11400000, guid: b30d6538d2227d74aa4e6ea122023c1d, type: 2}
+  - {fileID: 11400000, guid: 54edbcdf9e99e984b9ecc8f89a384ce6, type: 2}
   actors:
   - {fileID: 11400000, guid: fa74d7a86d27388458d518fce2addf60, type: 2}
 --- !u!4 &1880734509
