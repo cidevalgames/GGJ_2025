@@ -8,6 +8,7 @@ namespace Player
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private float speed = 6f;
+        [SerializeField] private float sprintSpeedMultiplier = 1.5f;
         [SerializeField] private float turnSmoothTime = .1f;
 
         private float _horizontal;
@@ -15,13 +16,17 @@ namespace Player
 
         private float _turnSmoothVelocity;
 
+        private bool _isSprinting = false;
+
         private CharacterController m_characterController;
         private Transform m_camera;
+        private Animator m_animator;
 
         private void Awake()
         {
             m_characterController = GetComponent<CharacterController>();
             m_camera = Camera.main.transform;
+            m_animator = GetComponentInChildren<Animator>();
         }
 
         private void Update()
@@ -34,8 +39,10 @@ namespace Player
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity, turnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
+                float currentSpeed = _isSprinting ? speed * sprintSpeedMultiplier : speed;
+
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                m_characterController.Move(moveDir.normalized * speed * Time.deltaTime);
+                m_characterController.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
             }
         }
 
@@ -46,6 +53,15 @@ namespace Player
 
             _horizontal = axis.x;
             _vertical = axis.y;
+
+            m_animator.SetBool("isMoving", axis.magnitude >= .1f);
+        }
+
+        public void OnSprint(InputValue value)
+        {
+            _isSprinting = !_isSprinting;
+
+            m_animator.SetBool("isSprinting", _isSprinting);
         }
         #endregion
     }

@@ -625,6 +625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
+  sprintSpeedMultiplier: 2
   turnSmoothTime: 0.1
 --- !u!114 &757173595
 MonoBehaviour:
