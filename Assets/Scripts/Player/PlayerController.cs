@@ -38,6 +38,23 @@ namespace Player
 
         private void Update()
         {
+            _isGrounded = m_characterController.isGrounded;
+
+            if (_isGrounded && _velocity.y < 0)
+            {
+                _velocity.y = -2f;
+            }
+
+            if (_isJumping && _isGrounded)
+            {
+                _velocity.y = Mathf.Sqrt(jumpForce * -2 * Physics.gravity.y);
+
+                _isJumping = false;
+            }
+
+            _velocity.y += Physics.gravity.y * Time.deltaTime;
+            m_characterController.Move(_velocity * Time.deltaTime);
+
             Vector3 direction = new Vector3(_horizontal, 0, _vertical).normalized;
 
             if (direction.magnitude >= .1f)
@@ -96,8 +113,6 @@ namespace Player
                 return;
             if (!m_characterController.isGrounded)
                 return;
-
-            _vSpeed += jumpForce;
 
             _isJumping = true;
 
