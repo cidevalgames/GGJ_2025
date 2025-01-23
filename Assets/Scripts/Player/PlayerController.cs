@@ -21,8 +21,6 @@ namespace Player
         private bool _isJumping = false;
         private bool _isGrounded = true;
 
-        private float _vSpeed = 0f;
-
         private Vector3 _velocity;
 
         private CharacterController m_characterController;
