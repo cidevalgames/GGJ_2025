@@ -579,7 +579,7 @@ GameObject:
   m_Component:
   - component: {fileID: 757173591}
   - component: {fileID: 757173592}
-  - component: {fileID: 757173597}
+  - component: {fileID: 757173593}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -629,7 +629,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 2.16, z: 0}
---- !u!114 &757173597
+--- !u!114 &757173593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -638,19 +638,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 757173589}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7458a07c788f2eb42856f14ea67dff3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 518b42fe2354e1c42a23128476343950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationFactorPerFrame: 15
-  turnSmoothTime: 0.1
-  walkSpeed: 3
-  runMultiplier: 3
-  zero: 0
-  gravity: -9.81
-  groundedGravity: -0.05
-  jumpForce: 1.5
-  maxJumpHeight: 1
-  maxJumpTime: 0.5
 --- !u!1 &871653099
 GameObject:
   m_ObjectHideFlags: 0

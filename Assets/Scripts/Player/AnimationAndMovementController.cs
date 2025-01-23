@@ -19,6 +19,8 @@ public class AnimationAndMovementController : MonoBehaviour
     private Vector2 _currentMovementInput;
     private Vector3 _currentMovement;
     private Vector3 _currentRunMovement;
+    private Vector3 _appliedMovement;
+    private Vector3 _cameraRelativeMovement;
 
     private bool _isMovementPressed;
     private bool _isRunPressed;
@@ -86,13 +88,15 @@ public class AnimationAndMovementController : MonoBehaviour
         HandleRotation();
         HandleAnimation();
 
+        _cameraRelativeMovement = ConvertToCameraSpace(_currentMovementInput);
+
         if (_isRunPressed)
         {
-            m_characterController.Move(_currentRunMovement * Time.deltaTime);
+            m_characterController.Move(_cameraRelativeMovement * Time.deltaTime);
         }
         else
         {
-            m_characterController.Move(_currentMovement * Time.deltaTime);
+            m_characterController.Move(_cameraRelativeMovement * Time.deltaTime);
         }
 
         HandleGravity();
@@ -130,9 +134,9 @@ public class AnimationAndMovementController : MonoBehaviour
     {
         Vector3 positionToLookAt;
 
-        positionToLookAt.x = _currentMovement.x;
-        positionToLookAt.y = 0f;
-        positionToLookAt.z = _currentMovement.z;
+        positionToLookAt.x = _cameraRelativeMovement.x;
+        positionToLookAt.y = zero;
+        positionToLookAt.z = _cameraRelativeMovement.y;
 
         Quaternion currentRotation = transform.rotation;
 
@@ -204,6 +208,34 @@ public class AnimationAndMovementController : MonoBehaviour
         float timeToApex = maxJumpTime / 2;
         gravity = (-2 * maxJumpHeight) / Mathf.Pow(timeToApex, 2);
         _initialJumpVelocity = (2 * maxJumpHeight) / timeToApex;
+    }
+
+    private Vector3 ConvertToCameraSpace(Vector3 vectorToRotate)
+    {
+        // Store the Y value of the original vector to rotate
+        float currentYValue = vectorToRotate.y;
+
+        // Get the forward and right directional vectors of the camera
+        Vector3 cameraForward = Camera.main.transform.forward;
+        Vector3 cameraRight = Camera.main.transform.right;
+
+        // Remove the Y values to ignore upward/downward camera angles
+        cameraForward.y = 0;
+        cameraRight.y = 0;
+
+        // Re-normalize both vectors so they each have a magnitude of 1
+        cameraForward = cameraForward.normalized;
+        cameraRight = cameraRight.normalized;
+
+        // Rotate the X and Z VectorToRotate values to camera space
+        Vector3 cameraForwardZProduct = vectorToRotate.z * cameraForward;
+        Vector3 cameraRightXProduct = vectorToRotate.x * cameraRight;
+
+        // The sum of both products is the Vector3 in camera space
+        Vector3 vectorRotatedToCameraSpace = cameraForwardZProduct + cameraRightXProduct;
+        vectorRotatedToCameraSpace.y = currentYValue;
+
+        return vectorRotatedToCameraSpace;
     }
 
     #region Input methods
