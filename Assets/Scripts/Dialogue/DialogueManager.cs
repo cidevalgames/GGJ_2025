@@ -50,10 +50,14 @@ namespace Dialogue
                 if (_isActive)
                 {
                     OpenDialogueAnimation();
+
+                    Cursor.lockState = CursorLockMode.None;
                 }
                 else
                 {
                     CloseDialogueAnimation();
+                    
+                    Cursor.lockState = CursorLockMode.Locked;
                 }
             }
         }
@@ -128,7 +132,7 @@ namespace Dialogue
             }
 
             Actor actorToDisplay = currentActors[messageToDisplay.actorID];
-            actorNameText.text = actorToDisplay.name;
+            actorNameText.text = actorToDisplay.actorName;
             actorImage.sprite = actorToDisplay.sprite;
         }
 
