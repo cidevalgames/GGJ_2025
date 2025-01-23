@@ -3,7 +3,27 @@ guid: c64d34c09f476f147a66002749b29949
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EMISSION VITRE
+    second: {fileID: 2100000, guid: 86776538c2abfe4479a5e1f0bbf8d71f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: feu
+    second: {fileID: 2100000, guid: 4a77e62a07af8354c983388ba1733a19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: map jeu
+    second: {fileID: 2100000, guid: d112f305d47efa24ab109642a9b68a1a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: map jeu.001
+    second: {fileID: 2100000, guid: dab5f7784d9bbbf49838e26a0376b2b1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
