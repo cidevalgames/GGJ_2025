@@ -67,8 +67,24 @@ namespace Player
                 float currentSpeed = _isSprinting ? speed * sprintSpeedMultiplier : speed;
 
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                m_characterController.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
+                moveDir.y = _vSpeed;
+
+                _velocity = moveDir.normalized * currentSpeed * Time.deltaTime;
             }
+
+            if (m_characterController.isGrounded)
+            {
+                _vSpeed = 0f;
+                m_animator.SetBool("isGrounded", true);
+            }
+            else
+            {
+                _vSpeed = Physics.gravity.y * Time.deltaTime;
+            }
+
+            _velocity.y = _vSpeed;
+
+            m_characterController.Move(_velocity);
         }
 
         #region Input
