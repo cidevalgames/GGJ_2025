@@ -34,6 +34,8 @@ namespace Player
             m_characterController = GetComponent<CharacterController>();
             m_camera = Camera.main.transform;
             m_animator = GetComponentInChildren<Animator>();
+
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void Update()
