@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using DG.Tweening;
+using Player;
 
 namespace Dialogue
 {
@@ -49,12 +50,16 @@ namespace Dialogue
 
                 if (_isActive)
                 {
+                    FindFirstObjectByType<PlayerController>().enabled = false;
+
                     OpenDialogueAnimation();
 
                     Cursor.lockState = CursorLockMode.None;
                 }
                 else
                 {
+                    FindFirstObjectByType<PlayerController>().enabled = true;
+
                     CloseDialogueAnimation();
                     
                     Cursor.lockState = CursorLockMode.Locked;
@@ -132,7 +137,7 @@ namespace Dialogue
             }
 
             Actor actorToDisplay = currentActors[messageToDisplay.actorID];
-            actorNameText.text = actorToDisplay.name;
+            actorNameText.text = actorToDisplay.actorName;
             actorImage.sprite = actorToDisplay.sprite;
         }
 
