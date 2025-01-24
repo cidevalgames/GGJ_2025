@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Message_1
   m_EditorClassIdentifier: 
   actorID: 0
-  text: "Comment vas-tu ? Moi \xE7a va super !"
+  text: "Que se passera-t-il si j\u2019\xE9choue ?"
