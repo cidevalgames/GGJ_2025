@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d4b9ad813d7c954db0887928b8cb283, type: 3}
-  m_Name: Message_0
+  m_Name: Message_6
   m_EditorClassIdentifier: 
   actorID: 0
-  text: "Je n\u2019arrive pas \xE0 penser \xE0 autre chose que \xE7a."
+  text: 'Et, finalement, accepter la personne que je suis.
+
+'
